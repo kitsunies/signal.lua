@@ -1,7 +1,7 @@
 local Connection = {}
 Connection.__index = Connection
 
-function Connection.new(signal, func)
+function Connection.new(signal, callback)
     local self = {
         signal = signal,
         callback = callback
