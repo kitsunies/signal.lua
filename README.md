@@ -53,6 +53,18 @@ Runs a function when a certain event is fired.
 
 This method executes the given callback function whenever the connected event gets fired with the [`event:fire`](#Firing) method.
 
+### Disconnecting
+
+```lua
+connection:disconnect()
+```
+
+Disables usage of a connection.
+
+- `connection` is the object that is fundamental for executing callbacks
+
+This method concludes the usage of the given connection object.
+
 # License
 
 This library is free software; you can redistribute and/or modify it under the terms of the MIT license. See [LICENSE](LICENSE) for details.
