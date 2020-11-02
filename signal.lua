@@ -23,15 +23,15 @@ Signal.__index = Signal
 
 function Signal.new()
     local self = {
-        connections = {},
+        connections = {}
     }
     
     return setmetatable(self, Signal)
 end
 
 function Signal:fire(...)
-    for func, _ in pairs(self.connections) do
-        func(...)
+    for callback in pairs(self.connections) do
+        callback(...)
     end
 end
 
