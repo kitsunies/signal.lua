@@ -1,6 +1,5 @@
-# signal.lua
-
-[signal.lua](signal.lua) is a basic event module made to attach and emmit events in lua.
+<h1 align=center>signal.lua 🛰️</h1>
+<h3 align=center>An event module made to attach and emmit singals 📡</h3>
 
 # Installation
 
