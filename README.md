@@ -3,7 +3,17 @@
 
 # Installation
 
-Copy the signal.lua file somewhere where your Lua interpreter will be able to find it and require it accordingly:
+## Luarocks
+
+If you are using [luarocks](https://luarocks.org), just run:
+
+```
+luarocks install signalise
+```
+
+## Manual
+
+Copy the [signal.lua](signal.lua) file somewhere where your Lua interpreter will be able to find it and require it accordingly:
 
 ```lua
 local signal = require('signal')
