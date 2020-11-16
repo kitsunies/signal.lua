@@ -87,6 +87,14 @@ Disables usage of a connection.
 
 This method concludes the usage of the given connection object.
 
+# Testing
+Install busted & luacheck `luarocks install busted && luarocks install luacheck` and run:
+
+```
+$ busted
+$ luacheck signal.lua
+```
+
 # License
 
 This library is free software; you can redistribute and/or modify it under the terms of the MIT license. See [LICENSE](LICENSE) for details.
