@@ -1,6 +1,37 @@
 <h1 align=center>signal.lua 🛰️</h1>
 <h3 align=center>An event module made to attach and emmit singals 📡</h3>
 
+# Example
+
+```lua
+local event = require("signal").new()
+
+event:connect(function()
+    print("I've been fired! 🚀")
+end)
+
+event:fire()
+--> "I've been fired! 🚀"
+```
+
+# Installation
+
+## Luarocks
+
+If you are using [luarocks](https://luarocks.org), just run:
+
+```
+luarocks install signalise
+```
+
+## Manual
+
+Copy the [signal.lua](signal.lua) file somewhere where your Lua interpreter will be able to find it and require it accordingly:
+
+```lua
+local signal = require('signal')
+```
+
 # Interface
 
 ## Event Creation
@@ -55,24 +86,6 @@ Disables usage of a connection.
 - `connection` is the object that is fundamental for executing callbacks
 
 This method concludes the usage of the given connection object.
-
-# Installation
-
-## Luarocks
-
-If you are using [luarocks](https://luarocks.org), just run:
-
-```
-luarocks install signalise
-```
-
-## Manual
-
-Copy the [signal.lua](signal.lua) file somewhere where your Lua interpreter will be able to find it and require it accordingly:
-
-```lua
-local signal = require('signal')
-```
 
 # License
 
