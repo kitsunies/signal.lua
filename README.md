@@ -4,9 +4,9 @@
 # Example
 
 ```lua
-local event = require("signal").new()
+local event = require("signal")()
 
-event:connect(function()
+event:on(function()
     print("I've been fired! 🚀")
 end)
 
@@ -29,24 +29,24 @@ luarocks install signalise
 Copy the [signal.lua](signal.lua) file somewhere where your Lua interpreter will be able to find it and require it accordingly:
 
 ```lua
-local signal = require('signal')
+local signal = require("signal")
 ```
 
 # Interface
 
-## Event Creation
+### Creation
 
 ```lua
-local event = require('signal').new()
+local event = signal.new()
+```
+or
+```lua
+local event = signal()
 ```
 
-Creates a new event.
+Creates and returns the event. It must be captured in a variable a in order for the events to take place.
 
 - `event` is the object that must be used to perform the events - see the ["Event methods"](#Event-Methods) section below.
-
-This method only creates and returns the tween. It must be captured in a variable a in order for the events to take place.
-
-## Event Methods
 
 ### Firing
 
@@ -54,38 +54,44 @@ This method only creates and returns the tween. It must be captured in a variabl
 event:fire([...])
 ```
 
-Fires the event.
+Triggers the event, allowing for connections to run once until the event is fired again.
 
-- `event` is an event returned by [`signal.new`](#Event-Creation)
-- `...` are the optional arguments to be used for the connections
+- `event` - An event returned by [`signal.new`](#Event-Creation)
+- `...` - The optional arguments to be used for the connections
 
-This method triggers the event, allowing for connections to run once until the event is fired again.
-
-### Connecting
+### Attaching
 
 ```lua
-local connection = event:connect(callback)
+local connection = event:attach(callback)
 ```
 
-Runs a function when a certain event is fired.
+Executes the given callback function whenever the connected event gets fired with the [`event.fire`](#Firing) method.
 
-- `event` is an event returned by [`signal.new`](#Event-Creation)
-- `callback` must be a function, it is exectuted when the event gets fired
-- `connection` is the returned connection
+- `event` - An event returned by [`signal.new`](#Event-Creation)
+- `callback` - Must be a function, exectuted when the event gets fired
+- `connection` - The returned connection
 
-This method executes the given callback function whenever the connected event gets fired with the [`event:fire`](#Firing) method.
-
-### Disconnecting
+### Attach Once
 
 ```lua
-connection:disconnect()
+local connection = event:once(callback)
 ```
 
-Disables usage of a connection.
+Works almost identically to [`event.fire`](#Firing), but only fires once before self detaching.
+
+- `event` - An event returned by [`signal.new`](#Event-Creation)
+- `callback` - Must be a function, exectuted when the event gets fired
+- `connection` - The returned connection
+
+### Detaching
+
+```lua
+connection:detach()
+```
+
+Concludes the usage of the given connection object.
 
 - `connection` is the object that is fundamental for executing callbacks
-
-This method concludes the usage of the given connection object.
 
 # Testing
 Install busted & luacheck `luarocks install busted && luarocks install luacheck` and run:
