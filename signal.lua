@@ -6,7 +6,6 @@ function Connection.new(signal, callback)
         signal = signal,
         callback = callback
     }
-
     return setmetatable(self, Connection)
 end
 
@@ -25,19 +24,26 @@ function Signal.new()
     local self = {
         connections = {}
     }
-    
     return setmetatable(self, Signal)
 end
 
 function Signal:fire(...)
-    for callback in pairs(self.connections) do
+    for callback, run in pairs(self.connections) do
         callback(...)
+        if run == "once" then 
+            self.connections[callback] = nil
+        end
     end
 end
 
-function Signal:connect(func)
-    self.connections[func] = true
-    return Connection.new(self, func)
-end  
+function Signal:on(callback)
+    self.connections[callback] = true
+    return Connection.new(self, callback)
+end
 
-return Signal
+function Signal:once(callback)
+    self.connections[callback] = "once"
+    return Connection.new(self, callback)
+end
+
+return setmetatable(Signal, {__call = Signal.new})
