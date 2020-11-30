@@ -9,7 +9,7 @@ function Connection.new(signal, callback)
     return setmetatable(self, Connection)
 end
 
-function Connection:disconnect()
+function Connection:detach()
     if self.signal then
         self.signal.connections[self.callback] = nil
         self.signal = nil
@@ -30,13 +30,13 @@ end
 function Signal:fire(...)
     for callback, run in pairs(self.connections) do
         callback(...)
-        if run == "once" then 
+        if run == "once" then
             self.connections[callback] = nil
         end
     end
 end
 
-function Signal:on(callback)
+function Signal:attach(callback)
     self.connections[callback] = true
     return Connection.new(self, callback)
 end
