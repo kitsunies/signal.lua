@@ -6,7 +6,7 @@
 ```lua
 local event = require("signal")()
 
-event:on(function()
+event:attach(function()
     print("I've been fired! 🚀")
 end)
 
